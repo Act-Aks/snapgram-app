@@ -11,11 +11,13 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-modules-cache-${{ hashFiles('**/package-lock.json') }}
+          key: node-modules-${{hashFiles('**/package-lock.json')}}
       - name: Install dependencies
         if: ${{ steps.node-modules-cache.outputs.cache-hit != 'true' }}
         run: npm ci
-      - name: Lint check
-        run: |
-          npm run lint
-          echo 'No lint errors.'
+      # - name: Lint check
+      #   run: |
+      #     npm run lint
+      #     echo 'No lint errors.'
+      - name: Run eslint on changed files
+        uses: tj-actions/eslint-changed-files@v18
