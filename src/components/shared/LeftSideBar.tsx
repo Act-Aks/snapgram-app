@@ -22,7 +22,7 @@ const LeftSideBar = () => {
     if (isSuccess) {
       navigate(0);
     }
-  }, [isSuccess]);
+  }, [isSuccess, navigate]);
 
   return (
     <nav className="leftsidebar">
