@@ -42,7 +42,7 @@ const TopBar = () => {
             className="flex-center gap-3"
           >
             <img
-              src={user.imageUrl || "/assets/images/profile-placeholder.svg"}
+              src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
               alt="profile"
               className="h-8 w-8 rounded-full"
             />
