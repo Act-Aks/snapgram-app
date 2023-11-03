@@ -12,24 +12,31 @@ import { Input } from "../ui/input";
 import { TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "../ui/use-toast";
-import { useNavigate } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
 import { Textarea } from "../ui/textarea";
 import { PostValidation } from "@/lib/validation";
 import FileUploader from "../shared/FileUploader";
 import { Models } from "appwrite";
 import { useUserContext } from "@/context/AuthContext";
 import { routes } from "@/constants";
-import { useCreatePost } from "@/lib/react-query/queriesAndMutations";
+import {
+  useCreatePost,
+  useUpdatePost,
+} from "@/lib/react-query/queriesAndMutations";
 import Loader from "../shared/Loader";
 
 type PostFormProps = {
   post?: Models.Document;
+  action: "Create" | "Update";
 };
 
-const PostForm = ({ post }: PostFormProps) => {
+const PostForm = ({ post, action }: PostFormProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { mutateAsync: createPost, isPending: isLoading } = useCreatePost();
+  const { mutateAsync: createPost, isPending: isCreatingPost } =
+    useCreatePost();
+  const { mutateAsync: updatePost, isPending: isUpdatingPost } =
+    useUpdatePost();
   const { user } = useUserContext();
 
   const form = useForm<TypeOf<typeof PostValidation>>({
@@ -43,6 +50,21 @@ const PostForm = ({ post }: PostFormProps) => {
   });
 
   async function onSubmit(values: TypeOf<typeof PostValidation>) {
+    if (!!post && action === "Update") {
+      const updatedPost = await updatePost({
+        ...values,
+        postId: post.$id,
+        imageId: post?.imageId,
+        imageUrl: post?.imageUrl,
+      });
+
+      if (!updatedPost) {
+        toast({ title: "Please try again" });
+      }
+
+      return navigate(generatePath(routes.posts, { id: post.$id }));
+    }
+
     const newPost = await createPost({
       ...values,
       userId: user.id,
@@ -54,6 +76,11 @@ const PostForm = ({ post }: PostFormProps) => {
 
     navigate(routes.home);
   }
+
+  const handleCancel = () => {
+    form.reset();
+    navigate(-1);
+  };
 
   return (
     <Form {...form}>
@@ -133,19 +160,24 @@ const PostForm = ({ post }: PostFormProps) => {
         />
 
         <div className="flex gap-4 items-center justify-end">
-          <Button type="button" className="shad-button_dark_4">
+          <Button
+            type="button"
+            className="shad-button_dark_4"
+            onClick={handleCancel}
+          >
             {"Cancel"}
           </Button>
           <Button
             type="submit"
             className="shad-button_primary whitespace-nowrap"
+            disabled={!form.formState.isDirty}
           >
-            {isLoading ? (
+            {isCreatingPost || isUpdatingPost ? (
               <div className="flex-center gap-2">
                 <Loader /> {"Loading..."}
               </div>
             ) : (
-              "Submit"
+              `${action} post`
             )}
           </Button>
         </div>
