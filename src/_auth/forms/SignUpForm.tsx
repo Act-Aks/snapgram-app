@@ -20,6 +20,7 @@ import {
   useSignInAccount,
 } from "@/lib/react-query/queriesAndMutations";
 import { useUserContext } from "@/context/AuthContext";
+import { routes } from "@/constants";
 
 const SignUpForm = () => {
   const { toast } = useToast();
@@ -150,10 +151,10 @@ const SignUpForm = () => {
           <p className="text-small-regular text-light-2 text-center mt-2">
             {"Already have an account?"} ?
             <Link
-              to={"/sign-in"}
+              to={routes.signIn}
               className="text-primary-500 text-small-semibold ml-1"
             >
-              {"Log in"}
+              {"Sign in"}
             </Link>
           </p>
         </form>

@@ -1,3 +1,4 @@
+import { routes } from "@/constants";
 import { getCurrentUser } from "@/lib/appwrite/api";
 import { TContext, TUser } from "@/types";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -60,7 +61,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       localStorage.getItem("cookieFallback") === "[]" ||
       localStorage.getItem("cookieFallback") === null
     ) {
-      navigate("/sign-in");
+      navigate(routes.signIn);
     }
 
     checkAuthUser();

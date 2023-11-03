@@ -18,6 +18,7 @@ import { useUserContext } from "@/context/AuthContext";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { routes } from "@/constants";
 
 const SignInForm = () => {
   const { toast } = useToast();
@@ -109,7 +110,7 @@ const SignInForm = () => {
           <p className="text-small-regular text-light-2 text-center mt-2">
             {"Don't have an account?"} ?
             <Link
-              to={"/sign-in"}
+              to={routes.signUp}
               className="text-primary-500 text-small-semibold ml-1"
             >
               {"Sign up"}
