@@ -7,9 +7,13 @@ Have a look at a minimal deployed version of the app at **[Snapgram](https://sna
 ## Screenshots
 
 <p float="left">
-  <img src="public/assets//images/snapgram-desktop.png" width="33%" />
-  <img src="public/assets//images/snapgram-mobile.png" width="33%" />
+  <img src="public/assets//images/snapgram-desktop.png" width="49%" height="450px"/>
+  <img src="public/assets//images/snapgram-mobile.png" width="49%" height="450px" />
 </p>
+
+<!-- | @Snapgram(Desktop)                                                                   | @Snapgram(Mobile)                                                                 |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| ![snapgram-desktop](public/assets//images/snapgram-desktop.png "@Snapgram(Desktop)") | ![snapgram-mobile](public/assets//images/snapgram-mobile.png "@Snapgram(Mobile)") | -->
 
 ## Project:
 
