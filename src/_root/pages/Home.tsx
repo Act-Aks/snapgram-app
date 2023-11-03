@@ -1,5 +1,6 @@
 import Loader from "@/components/shared/Loader";
 import PostCard from "@/components/shared/PostCard";
+import { toast } from "@/components/ui/use-toast";
 import { useGetRecentPosts } from "@/lib/react-query/queriesAndMutations";
 import { Models } from "appwrite";
 
@@ -7,8 +8,17 @@ const Home = () => {
   const {
     data: posts,
     isPending: isPostLoading,
-    isError: isErrorPosts,
+    isError,
   } = useGetRecentPosts();
+
+  if (isError) {
+    toast({ title: "Failed to get recent posts" });
+    return (
+      <div className="flex w-full">
+        {"Something went wrong. Please try again later"}
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-1">

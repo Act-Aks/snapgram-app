@@ -4,7 +4,7 @@ import GridPostList from "./GridPostList";
 
 type SearchResultsProps = {
   isSearching: boolean;
-  searchedPosts: Models.Document[];
+  searchedPosts?: Models.DocumentList<Models.Document>;
 };
 
 const SearchResults = ({ isSearching, searchedPosts }: SearchResultsProps) => {

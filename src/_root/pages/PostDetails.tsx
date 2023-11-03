@@ -14,7 +14,7 @@ const PostDetails = () => {
   const { user } = useUserContext();
 
   const handleDeletePost = (event: React.MouseEvent) => {
-    throw new Error("Function not implemented.");
+    console.log(event);
   };
 
   return (
