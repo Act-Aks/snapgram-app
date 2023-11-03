@@ -1,27 +1,22 @@
-# React + TypeScript + Vite
+## SnapGram App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A webapp where the users can add posts, likes and save the posts of their choice and much more...
 
-Currently, two official plugins are available:
+Have a look at a minimal deployed version of the app at **[Snapgram](https://snapgram-ghunkrg3w-akash-srivastavas-projects.vercel.app)** 😆
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Screenshots
 
-## Expanding the ESLint configuration
+<p float="left">
+  <img src="public/assets//images/snapgram-desktop.png" width="33%" />
+  <img src="public/assets//images/snapgram-mobile.png" width="33%" />
+</p>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Project:
 
-- Configure the top-level `parserOptions` property like this:
+It is built using React, TypeScript and Vite.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+### Tech stack used to build the project:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- React
+- TanStack Query
+- Appwrite(as BaaS)
