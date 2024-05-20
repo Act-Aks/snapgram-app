@@ -1,0 +1,33 @@
+name: Test build number
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_number:
+        required: false
+        description: build number
+        type: number
+
+env:
+  BUILD_NUMBER: ${{ inputs.build_number }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check
+        run: |
+          # If the android build number input is empty, continue execution
+          if [ -z "${{ env.BUILD_NUMBER }}" ]; then
+              echo "Version android input is empty. Continuing execution."
+          else
+              # Check if the input matches the regex pattern
+              if ! [[ "${{ env.BUILD_NUMBER }}" =~ [0-9]+ ]]; then
+                  echo ${{ env.BUILD_NUMBER }}
+                  exit 1
+              fi
+
+              # If the input matches the pattern, continue with the job
+              echo "not echo ${{ env.BUILD_NUMBER }}"
+          fi
+    
